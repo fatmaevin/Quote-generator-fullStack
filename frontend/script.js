@@ -11,10 +11,11 @@ async function displayRandomQuote() {
   authorElement.textContent = `— ${randomQuote.author}`;
 }
 
-window.onload = () => {
+document.addEventListener("DOMContentLoaded", () => {
   displayRandomQuote();
 
   document.getElementById("new-quote").addEventListener("click", () => {
     displayRandomQuote();
   });
-};
+});
+
