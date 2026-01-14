@@ -3,7 +3,6 @@ const authorElement = document.getElementById("author-display");
 const newQuoteBtn = document.getElementById("new-quote");
 const quoteForm = document.getElementById("quote-form");
 
-
 async function displayRandomQuote() {
   try {
     const response = await fetch(
@@ -23,11 +22,10 @@ async function displayRandomQuote() {
 document.addEventListener("DOMContentLoaded", () => {
   displayRandomQuote();
 
-
   newQuoteBtn.addEventListener("click", displayRandomQuote);
-};
+});
 quoteForm.addEventListener("submit", async (event) => {
-  event.preventDefault(); 
+  event.preventDefault();
 
   const quoteText = document.getElementById("quote-text").value.trim();
   const authorText = document.getElementById("author-text").value.trim();
@@ -47,20 +45,10 @@ quoteForm.addEventListener("submit", async (event) => {
       }
     );
 
-    quoteForm.reset(); 
-    displayRandomQuote(); 
+    quoteForm.reset();
+    displayRandomQuote();
   } catch (error) {
     console.error("Error adding quote:", error);
     alert("Failed to add quote.");
   }
 });
-
-  
-
-
-  document.getElementById("new-quote").addEventListener("click", () => {
-    displayRandomQuote();
-  });
-});
-
-
