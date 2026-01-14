@@ -10,12 +10,29 @@
   <body>
     <div class="container">
       <div class="box">
-        <p id="quote"></p>
-        <p id="author"></p>
+        <p id="quote-display"></p>
+        <p id="author-display"></p>
         <div class="button-box">
           <button type="button" id="new-quote">New quote</button>
         </div>
       </div>
+    </div>
+    <div class="form-container">
+      <form id="quote-form">
+        <input
+          type="text"
+          id="quote-text"
+          placeholder="Add your quote"
+          required
+        />
+        <input
+          type="text"
+          id="author-text"
+          placeholder="Please add author"
+          required
+        />
+        <button type="submit" id="submit-button">ADD QUOTE</button>
+      </form>
     </div>
   </body>
 </html>
