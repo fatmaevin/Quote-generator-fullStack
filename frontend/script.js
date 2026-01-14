@@ -3,6 +3,7 @@ const authorElement = document.getElementById("author-display");
 const newQuoteBtn = document.getElementById("new-quote");
 const quoteForm = document.getElementById("quote-form");
 
+
 async function displayRandomQuote() {
   try {
     const response = await fetch(
@@ -19,8 +20,9 @@ async function displayRandomQuote() {
   }
 }
 
-window.onload = () => {
+document.addEventListener("DOMContentLoaded", () => {
   displayRandomQuote();
+
 
   newQuoteBtn.addEventListener("click", displayRandomQuote);
 };
@@ -54,4 +56,11 @@ quoteForm.addEventListener("submit", async (event) => {
 });
 
   
+
+
+  document.getElementById("new-quote").addEventListener("click", () => {
+    displayRandomQuote();
+  });
+});
+
 
