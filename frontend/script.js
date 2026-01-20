@@ -8,7 +8,21 @@ async function displayRandomQuote() {
     const response = await fetch(
       "https://fatmaevin-quote-generator-backend.hosting.codeyourfuture.io"
     );
-    const randomQuote = await response.json();
+
+    if (!response.ok) {
+      throw new Error(`Server error: ${response.status}`);
+    }
+
+    const text = await response.text();
+    if (!text) {
+      throw new Error("Empty response from server");
+    }
+
+    const randomQuote = JSON.parse(text);
+
+    if (!randomQuote.text || randomQuote.text.trim() === "") {
+      throw new Error("Quote text is empty");
+    }
 
     quoteElement.textContent = `"${randomQuote.text}"`;
     authorElement.textContent = `— ${randomQuote.author}`;
@@ -21,9 +35,9 @@ async function displayRandomQuote() {
 
 document.addEventListener("DOMContentLoaded", () => {
   displayRandomQuote();
-
   newQuoteBtn.addEventListener("click", displayRandomQuote);
 });
+
 quoteForm.addEventListener("submit", async (event) => {
   event.preventDefault();
 
@@ -46,7 +60,9 @@ quoteForm.addEventListener("submit", async (event) => {
     );
 
     quoteForm.reset();
-    displayRandomQuote();
+
+    quoteElement.textContent = `"${quoteText}"`;
+    authorElement.textContent = `— ${authorText}`;
   } catch (error) {
     console.error("Error adding quote:", error);
     alert("Failed to add quote.");
